@@ -1,0 +1,239 @@
+/*fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --accent-color: #9B00FF;
+}
+
+body,
+html {
+  background-color: #1f2833;
+}
+
+
+.barlow-semibold {
+  font-family: "Barlow", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.col {
+  padding-bottom: 10px;
+}
+
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18rem;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+h1,
+h2 {
+  text-align: center;
+  font-size: 10vh;
+  color: white;
+}
+
+h3 {
+  text-align: left;
+  font-size: 10vh;
+  color: white;
+}
+
+h4 {
+  text-align: left;
+  font-size: 10vh;
+  color: white;
+
+}
+
+.cell {
+  border-radius: 15px;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  color: white;
+  font-family: "Barlow", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 4vh;
+  transition: all .2s ease-in-out;
+  padding: 1.5vh;
+  width: 100%;
+}
+
+.room-pin {
+  background-color: #696969;
+}
+
+#enterbox::placeholder {
+  color: #D3D3D3;
+
+  /* Set placeholder text color to white */
+}
+
+.back-arrow {
+  background: url('backarrow.png') no-repeat;
+  background-size: contain;
+  height: 9vh;
+  margin-top: -10vh;
+  width: 9vh;
+  border: none;
+  /* Remove any border */
+  padding: 0;
+  /* Remove any padding */
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+}
+
+.back-arrow:hover {
+  transition: all .2s ease-in-out;
+  transform: scale(1.2);
+}
+
+#themes {
+  margin-bottom: 20px;
+}
+
+#placeholder2 {
+  margin-bottom: 10px;
+}
+
+#enterbox {
+  margin-bottom: 20px;
+}
+
+.enter-button {
+  background: var(--accent-color);
+}
+
+.create-button {
+  font-family: "Barlow", sans-serif;
+  border: 0.8vh solid var(--accent-color);
+  background-color: transparent;
+  color: var(--accent-color);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+}
+
+.enter-button:hover {
+  transition: all .2s ease-in-out;
+  transform: scale(1.03);
+}
+
+
+.create-button:hover {
+  transition: all .2s ease-in-out;
+  transform: scale(1.05);
+}
+
+
+.theme-dropdown {
+  color: #D3D3D3;
+  background: #696969;
+  /* Center the element horizontally */
+}
+
+.party-name {
+  background: #696969;
+  width: min-content;
+  /* Center the element horizontally */
+}
+
+.limit-dropdown {
+  color: #D3D3D3;
+  background: #696969;
+}
+
+.create-party {
+  background: #9B00FF;
+  font-size: 3vh;
+  text-align: center;
+  height: 5.2vh;
+  border-radius: 15px;
+  width: 100%;
+  color: white;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.create-party:hover {
+  transition: all .2s ease-in-out;
+  transform: scale(1.05);
+}
+
+#namebox::placeholder {
+  color: #D3D3D3;
+}
+
+.header_text {
+  background: #12c2e9;
+  background: -webkit-linear-gradient(to right, #4776e6, #d569f8);
+  background: linear-gradient(to right, #4776e6, #d569f8);
+  padding: 2vh;
+}
+
+.rectangle {
+  background-color: rgba(45, 45, 45, 0.5);
+  width: 150px;
+  height: 30px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding-top: 5px;
+}
+
+.rectangle2 {
+  background-color: rgba(45, 45, 45, 0.5);
+  width: 300px;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding-top: 5px;
+}
+
+.settings-boxes {
+
+  margin: 0 auto;
+  margin-bottom: 2vh;
+  border-radius: 20px;
+  padding: 1.5vh 2vh 1.5vh 2vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+}
+
+p {
+  padding-top: .6vh;
+  text-align: left;
+
+}
+
+.silly-button1 {
+  border: none;
+  padding: 0;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+
+.silly-button1 {
+  margin-left: auto;
+
+}
+
+.silly-button1:hover {
+  transition: all .2s ease-in-out;
+  transform: scale(1.2);
+}
