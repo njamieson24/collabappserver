@@ -4,15 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Room</title>
-  <link href="main.css" rel="stylesheet" type="text/css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;900&display=swap" rel="stylesheet">
+  <title>collab.</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta name="theme-color" content="#343a53">
+
 </head>
 
 <body>
-  <div class="header_text">
+  <header class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="font-weight: 700;">collab<span style="color: #4590e6;">.</span></h1>
     <?php
     // Retrieve room code from URL parameter
     $roomCode = $_GET['room_code'];
@@ -37,63 +37,98 @@
             // Fetch room details
             $row = mysqli_fetch_assoc($result);
             $roomName = $row['party_name'];
-            $theme = $row['theme'];
+            $theme = $row['theme']; // Assuming 'theme' is the column name for the theme in your database
 
-            // Display room name and theme
-            echo "<h1 style='font-size: 2.5rem;' class='text-banner barlow-semibold'>$roomName</h1>";
-            echo "<h2 style='font-size: 1rem;' class='rectangle text-banner barlow-semibold'>#$roomCode - $theme</h2>";
+            // Display room code and name
+            echo "<p style='font-size: 1rem; margin: 0; padding: 8px 0 8px 0; background-color: #343a53; color: white; border-radius: 13px;'>" . $roomCode . " - " . $roomName . "</p>";
+            // Update the content of the "HIPHOP" box with the retrieved theme
+            echo "<p style='font-weight: 700; font-size: 1rem; margin-left: auto; background-color: rgb(0, 0, 0, 0.2); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;'>$theme</p>";
         } else {
             // Room not found or query failed
-            echo "<h1 style='font-size: 2.5rem;' class='text-banner barlow-semibold'>Room Not Found</h1>";
+            echo "<p style='font-size: 1rem; margin: 0; padding: 8px 0 8px 0;'>Room Not Found</p>";
         }
 
         // Close the database connection
         mysqli_close($connection);
     } else {
         // Failed to connect to the database
-        echo "<h1 style='font-size: 2.5rem;' class='text-banner barlow-semibold'>Failed to Connect to the Database</h1>";
+        echo "<p style='font-size: 1rem; margin: 0; padding: 8px 0 8px 0;'>Failed to Connect to the Database</p>";
     }
     ?>
-    <a href="index.html"><button type="button" class=back-arrow></button></a>
+
+    <p
+      style="font-weight: 700; font-size: 1rem; margin-left: auto; background-color: rgb(0, 0, 0, 0.2); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;">
+      HIPHOP</p>
+  </header>
+
+  <div style="margin-top: 4vh; display: flex; justify-content: space-between;" class="container">
+    <p style="margin: 0; padding: 8px 0 8px 0;" class="section_header">Now Playing</p>
+    <p
+      style="font-weight: 700; font-size: 1rem; margin-left: auto; background-color: rgb(0, 0, 0, 0.2); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;">
+      HIPHOP</p>
   </div>
 
-  <h4 style="font-size: 1.5rem;" class="song_player barlow-semibold">SONG NAME <br><span style="color: #b3b3b3;">SONG
-      ARTIST</span></h4>
+  <!-- The song that is playing and the song that is queued next -->
 
-  <div class="barlow-semibold"
-    style="font-size: 1.4rem; color: white; margin-top: 5vh; width: 350px; margin-left: auto; margin-right: auto;">
-
-    <div class="settings-boxes">
-      <p>Request a Song</p>
-      <a class="silly-button1">
-        <image style="height: 6vh" src="images/request.svg">
-      </a>
+  <div style="margin-top: 2vh; display: flex;" class="container music_player">
+    <div style="width: 65px; height: 65px; background-color: grey; border-radius: 20px;"></div>
+    <div style="margin-left: 2vh; display: flex; flex-direction: column; justify-content: center;">
+      <p style="font-weight: 700;">Can't Say</p>
+      <p style="font-weight: 400;">TRAVIS SCOTT</p>
     </div>
-
-    <div class="settings-boxes">
-      <p>Vote Skip</p>
-      <a class="silly-button1">
-        <image style="height: 6vh" src="images/skip.svg">
-      </a>
+    <p
+      style="font-size: 0.8rem; margin-left: auto; background-color: rgba(41,132,96); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;">
+      Playing</p>
+  </div>
+  <div style="margin-top: 2vh; display: flex; opacity: 0.5" class="container music_player">
+    <div style="width: 65px; height: 65px; background-color: grey; border-radius: 20px;"></div>
+    <div style="margin-left: 2vh; display: flex; flex-direction: column; justify-content: center;">
+      <p style="font-weight: 700;">90210</p>
+      <p style="font-weight: 400;">TRAVIS SCOTT</p>
     </div>
-
-    <div class="settings-boxes">
-      <p>Tip the DJ</p>
-      <a class="silly-button1">
-        <image style="height: 6vh" src="images/tip_dj.svg">
-      </a>
-    </div>
-
-    <div class="settings-boxes">
-      <p>View Queue</p>
-      <a class="silly-button1">
-        <image style="height: 6vh" src="images/view_queue.svg">
-      </a>
-    </div>
-    <a href="join_room.php"> <button class="leave_button barlow-semibold">Leave</button></a>
-
+    <p
+      style="font-size: 0.8rem; margin-left: auto; background-color: rgba(85,85,85); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;">
+      Up Next</p>
   </div>
 
+
+  <div style="margin-top: 4vh; display: flex; justify-content: space-between;" class="container">
+    <p style="margin: 0; padding: 8px 0 8px 0;" class="section_header">Party Controls</p>
+  </div>
+
+  <!-- Skip song feature plus tip DJ -->
+
+  <div class="container">
+    <div class="settings-boxes">
+      <p style="font-size: 1.4rem;">Vote Skip</p>
+      <a class="silly-button1">
+        <image style="height: 6vh" src="">
+      </a>
+    </div>
+    <div class="settings-boxes">
+      <p style="font-size: 1.4rem;">Tip DJ</p>
+      <a class="silly-button1">
+        <image style="height: 6vh" src="">
+      </a>
+    </div>
+  </div>
+
+
+  <!-- Dock Menu -->
+  <div class="dock">
+    <ul>
+      <li><i class="fa-solid fa-bars"></i></li>
+      <li><a href="song_search.php"><i class="fa-solid fa-plus"></i></a></li>
+      <li><i class="fa-solid fa-arrow-right-from-bracket"></i></li>
+    </ul>
+  </div>
+
+
+  <script src="script.js"></script>
+  <script src="https://kit.fontawesome.com/cd3c1c5855.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
