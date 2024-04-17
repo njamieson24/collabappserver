@@ -1,15 +1,6 @@
 <?php
 
 
-
-
-
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
