@@ -121,4 +121,39 @@ a {
 .btn-primary {
   background-color: rgba(50, 60, 74, 1);
   border: 0.2px solid #657b9aff;
+
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.cell {
+  width: 100%;
+  padding: 2vh;
+  margin-top: 10px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.room-pin {
+  border-radius: 15px;
+  border: none;
+  color: grey;
+}
+
+button {
+  background-color: #657b9aff;
+  border: 0.2px solid #657b9aff;
+  color: white;
+}
+
+a button:hover {
+  cursor: pointer;
 }
