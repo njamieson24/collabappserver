@@ -8,64 +8,96 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
   <meta name="theme-color" content="#343a53">
 
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left-content {
+      display: flex;
+      align-items: center;
+    }
+
+    .controls-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section_header {
+      margin: 0;
+      padding: 8px 0 8px 0;
+    }
+
+    .music_player {
+      margin-top: 2vh;
+    }
+
+    .settings-boxes {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 
 <body>
-  <header class="container" style="display: flex; justify-content: space-between; align-items: center;">
-    <h1 style="font-weight: 700;">collab<span style="color: #4590e6;">.</span></h1>
-    <?php
-    // Retrieve room code from URL parameter
-    $roomCode = $_GET['room_code'];
+  <header class="container">
+    <div class="left-content">
+      <h1 style="font-weight: 700;">collab<span style="color: #4590e6;">.</span></h1>
+    </div>
+    <div class="party-info">
+      <?php
+      // Include database connection parameters
+      define('DB_SERVER', 'localhost');
+      define('DB_USERNAME', 'root');
+      define('DB_PASSWORD', '');
+      define('DB_NAME', 'djapp');
 
-    // Include database connection parameters
-    define('DB_SERVER', 'localhost');
-    define('DB_USERNAME', 'root');
-    define('DB_PASSWORD', '');
-    define('DB_NAME', 'djapp');
+      // Establish a database connection
+      $connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-    // Establish a database connection
-    $connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+      // Check if the connection was successful
+      if ($connection) {
+        // Retrieve room code from URL parameter
+        $roomCode = $_GET['room_code'];
 
-    // Check if the connection was successful
-    if ($connection) {
         // Query to retrieve room details based on the provided room code
         $query = "SELECT * FROM rooms WHERE room_code = '$roomCode'";
         $result = mysqli_query($connection, $query);
 
         // Check if the query returned any rows
         if ($result && mysqli_num_rows($result) > 0) {
-            // Fetch room details
-            $row = mysqli_fetch_assoc($result);
-            $roomName = $row['party_name'];
-            $theme = $row['theme']; // Assuming 'theme' is the column name for the theme in your database
+          // Fetch room details
+          $row = mysqli_fetch_assoc($result);
+          $roomName = $row['party_name'];
+          $partyRoomCode = $row['room_code'];
+          $theme = $row['theme']; // Assuming there's a 'theme' column in the 'rooms' table
 
-            // Display room code and name
-            echo "<p style='font-size: 1rem; margin: 0; padding: 8px 0 8px 0; background-color: #343a53; color: white; border-radius: 13px;'>" . $roomCode . " - " . $roomName . "</p>";
-            // Update the content of the "HIPHOP" box with the retrieved theme
-            echo "<p style='font-weight: 700; font-size: 1rem; margin-left: auto; background-color: rgb(0, 0, 0, 0.2); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;'>$theme</p>";
+          // Display room name, party room code, and theme
+          echo "<p>$roomName <br> #$partyRoomCode</p>";
+         
         } else {
-            // Room not found or query failed
-            echo "<p style='font-size: 1rem; margin: 0; padding: 8px 0 8px 0;'>Room Not Found</p>";
+          // Room not found or query failed
+          echo "<p>Room Not Found</p>";
         }
 
         // Close the database connection
         mysqli_close($connection);
-    } else {
+      } else {
         // Failed to connect to the database
-        echo "<p style='font-size: 1rem; margin: 0; padding: 8px 0 8px 0;'>Failed to Connect to the Database</p>";
-    }
-    ?>
-
-    <p
-      style="font-weight: 700; font-size: 1rem; margin-left: auto; background-color: rgb(0, 0, 0, 0.2); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;">
-      HIPHOP</p>
+        echo "<p>Failed to Connect to the Database</p>";
+      }
+      ?>
+    </div>
   </header>
 
+  <!-- Original HTML content continues here -->
   <div style="margin-top: 4vh; display: flex; justify-content: space-between;" class="container">
     <p style="margin: 0; padding: 8px 0 8px 0;" class="section_header">Now Playing</p>
     <p
-      style="font-weight: 700; font-size: 1rem; margin-left: auto; background-color: rgb(0, 0, 0, 0.2); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;">
-      HIPHOP</p>
+      style="font-weight: 700; font-size: 1rem; background-color: rgb(0, 0, 0, 0.2); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;">
+      <?php echo $theme; ?></p>
   </div>
 
   <!-- The song that is playing and the song that is queued next -->
@@ -91,12 +123,10 @@
       Up Next</p>
   </div>
 
-
-  <div style="margin-top: 4vh; display: flex; justify-content: space-between;" class="container">
+  <!-- Party Controls -->
+  <div class="container">
     <p style="margin: 0; padding: 8px 0 8px 0;" class="section_header">Party Controls</p>
   </div>
-
-  <!-- Skip song feature plus tip DJ -->
 
   <div class="container">
     <div class="settings-boxes">
@@ -112,17 +142,14 @@
       </a>
     </div>
   </div>
-
-
   <!-- Dock Menu -->
   <div class="dock">
     <ul>
       <li><i class="fa-solid fa-bars"></i></li>
       <li><a href="song_search.php"><i class="fa-solid fa-plus"></i></a></li>
-      <li><i class="fa-solid fa-arrow-right-from-bracket"></i></li>
+      <li><a href="join_room.php"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
     </ul>
   </div>
-
 
   <script src="script.js"></script>
   <script src="https://kit.fontawesome.com/cd3c1c5855.js" crossorigin="anonymous"></script>
