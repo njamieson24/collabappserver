@@ -1,11 +1,42 @@
 const CLIENT_ID = "3d7861e71e754da88d9f19448b356ab0";
 const CLIENT_SECRET = "1f2762929a094a3297bdc61af90dbf51";
 
-const queue = [];
+
+
+// Function to send data to PHP
+async function sendToPHP(track) {
+  const data = {
+    song_name: track.name,
+    artist_name: track.artists[0].name,
+    album_image: track.album.images[0].url,
+    room_code: roomCode,
+  };
+
+  console.log("Sending data to PHP:", data);
+
+  try {
+    const response = await fetch('playlist.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to send data:", response.statusText);
+    } else {
+      console.log("Data sent to PHP successfully");
+    }
+  } catch (error) {
+    console.error("Error sending data to PHP:", error);
+  }
+}
 
 
 document.getElementById("button-search").addEventListener("click", function() {
   search();
+
 });
 
 async function search() {
@@ -13,7 +44,7 @@ async function search() {
   console.log("Search for " + searchInput);
 
   // API Access Token
-  var authParameters = {
+  const authParameters = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -57,15 +88,14 @@ function renderTracks(tracks) {
 
   tracks.forEach(function(track) {
     const card = document.createElement("div");
-    card.classList.add("card", "d-flex", "align-items-center", "flex-row",);
+    card.classList.add("card", "d-flex", "align-items-center", "flex-row");
     card.innerHTML = `
-            <img src="${track.album.images[0].url}" class="card-img-left img-thumbnail align-self-center" alt="${track.name}"> <!-- Added align-self-center class -->
-            <div class="card-body">
-                <h4 style="font-size: 2.5rem; font-family: Barlow, sans-serif; font-weight: 700;" class="card-title">${track.name}</h4>
-                <p style="font-size: 2.2rem; color: #cfcfcf; font-family: Barlow, sans-serif;
-" class="card-text">${track.artists[0].name}</p>
-            </div>
-        `;
+      <img src="${track.album.images[0].url}" class="card-img-left img-thumbnail align-self-center" alt="${track.name}">
+      <div class="card-body">
+        <h4 style="font-size: 2.5rem; font-family: Barlow, sans-serif; font-weight: 700;" class="card-title">${track.name}</h4>
+        <p style="font-size: 2.2rem; color: #cfcfcf; font-family: Barlow, sans-serif;" class="card-text">${track.artists[0].name}</p>
+      </div>
+    `;
 
     card.addEventListener('click', function() {
       console.log("Clicked Song Info:");
@@ -74,15 +104,11 @@ function renderTracks(tracks) {
       console.log("Artist Name:", track.artists[0].name);
       console.log("Album Name:", track.album.name);
       console.log("Album Image URL:", track.album.images[0].url);
-      queue.push(track.name);
-      console.log("The queue:" + queue);
+
+      // Send data to PHP
+      sendToPHP(track);
     });
 
     container.appendChild(card);
   });
 }
-
-
-
-
-

@@ -21,6 +21,11 @@
       margin-bottom: 10px;
     }
 
+    .song img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
 
     .left-content {
       display: flex;
@@ -52,15 +57,15 @@
       align-items: center;
       margin-bottom: 10px;
       padding: 10px;
-      background-color: none;
+      border-radius: 10px;
       border: none;
     }
 
     .card img {
-      width: 85px;
-      height: 85px;
+      width: 50px;
+      height: 50px;
       margin-right: 15px;
-      border-radius: 15px;
+      border-radius: 5px;
     }
 
     .card-body {
@@ -79,9 +84,6 @@
       color: #6c757d;
       margin: 0;
     }
-    
-   
-
   </style>
 </head>
 
@@ -90,8 +92,10 @@
     <div class="left-content">
       <h1 style="font-weight: 700;">collab<span style="color: #4590e6;">.</span></h1>
     </div>
+    <h2>Songs for Room: <span id="room_code"></span></h2>
+    
     <div class="party-info">
-    <?php
+      <?php
       // Include database connection parameters
       define('DB_SERVER', 'localhost');
       define('DB_USERNAME', 'root');
@@ -157,80 +161,34 @@
     </div>
   </header>
 
-  <!-- Original HTML content continues here -->
-  <div style="margin-top: 4vh; display: flex; justify-content: space-between;" class="container">
-    <p style="margin: 0; padding: 8px 0 8px 0;" class="section_header">Now Playing</p>
-    <p
-      style="font-weight: 700; font-size: 1rem; background-color: rgb(0, 0, 0, 0.2); padding: 8px 20px; text-transform: uppercase; border-radius: 13px; align-self: center;">
-      <?php echo $theme; ?></p>
-  </div>
-
-  <!-- The song that is playing and the song that is queued next -->
-
-<div style="margin: 0 auto; width: 95%">
-  <div class="row row-cols-1 mx-2" id="playlistContainer">
-  <!-- Tracks will be dynamically added here -->
-  <?php if (!empty($songs)): ?>
-    <?php $firstSong = $songs[0]; ?>
-    <div class="card d-flex align-items-center flex-row">
-      <img src="<?php echo htmlspecialchars($firstSong['album_image']); ?>" class="card-img-left img-thumbnail align-self-center" alt="<?php echo htmlspecialchars($firstSong['song_name']); ?>">
-      <div class="card-body">
-        <h4 class="card-title"><?php echo htmlspecialchars($firstSong['song_name']); ?></h4>
-        <p class="card-text"><?php echo htmlspecialchars($firstSong['artist_name']); ?></p>
-      </div>
-    </div>
-  <?php endif; ?>
-</div>
-
-<div style="opacity: 0.5;" class="row row-cols-1 mx-2" id="playlistContainer">
-  <!-- Tracks will be dynamically added here -->
-  <?php if (!empty($songs)): ?>
-    <?php $firstSong = $songs[1]; ?>
-    <div class="card d-flex align-items-center flex-row">
-      <img src="<?php echo htmlspecialchars($firstSong['album_image']); ?>" class="card-img-left img-thumbnail align-self-center" alt="<?php echo htmlspecialchars($firstSong['song_name']); ?>">
-      <div class="card-body">
-        <h4 class="card-title"><?php echo htmlspecialchars($firstSong['song_name']); ?></h4>
-        <p class="card-text"><?php echo htmlspecialchars($firstSong['artist_name']); ?></p>
-      </div>
-    </div>
-  <?php endif; ?>
-</div>
-  </div>
- 
-
-  <!-- Party Controls -->
-  <div class="container">
-    <p style="margin: 0; padding: 8px 0 8px 0;" class="section_header">Party Controls</p>
-  </div>
-
-  <div class="container">
-    <div class="settings-boxes">
-      <p style="font-size: 1.4rem;">Vote Skip</p>
-      <a class="silly-button1">
-        <image style="height: 6vh" src="">
-      </a>
-    </div>
-    <div class="settings-boxes">
-      <p style="font-size: 1.4rem;">Tip DJ</p>
-      <a class="silly-button1">
-        <image style="height: 6vh" src="">
-      </a>
+  <div style="margin: 0 auto; width: 90%;">
+    <div class="row row-cols-1 mx-2" id="playlistContainer">
+      <!-- Tracks will be dynamically added here -->
+      <?php if (!empty($songs)): ?>
+        <?php foreach ($songs as $song): ?>
+          <div class="card d-flex align-items-center flex-row">
+            <img src="<?php echo htmlspecialchars($song['album_image']); ?>" class="card-img-left img-thumbnail align-self-center" alt="<?php echo htmlspecialchars($song['song_name']); ?>">
+            <div class="card-body">
+              <h4 class="card-title"><?php echo htmlspecialchars($song['song_name']); ?></h4>
+              <p class="card-text"><?php echo htmlspecialchars($song['artist_name']); ?></p>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
+
   <!-- Dock Menu -->
   <div class="dock">
     <ul>
-      <li><a href="view-queue.php?room_code=<?php echo $roomCode; ?>"><i class="fa-solid fa-bars"></i></a></li>
-      <li><a href="song_search.php?room_code=<?php echo $roomCode; ?>"><i class="fa-solid fa-plus"></i></a></li>
+      <li><i class="fa-solid fa-bars"></i></li>
+      <li><a href="song_search.php?room_code=<?php echo isset($roomCode) ? $roomCode : ''; ?>"><i class="fa-solid fa-plus"></i></a></li>
       <li><a href="join_room.php"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
     </ul>
   </div>
 
-  <script src="script.js"></script>
   <script src="https://kit.fontawesome.com/cd3c1c5855.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>

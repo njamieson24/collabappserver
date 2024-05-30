@@ -1,239 +1,175 @@
-/*fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 
 :root {
-  --accent-color: #9B00FF;
+  --primary-font-color: #e6e6e6ff;
 }
 
-body,
 html {
-  background-color: #1f2833;
-}
-
-
-.barlow-semibold {
-  font-family: "Barlow", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.col {
-  padding-bottom: 10px;
-}
-
-.login {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 18rem;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-h1,
-h2 {
-  text-align: center;
-  font-size: 10vh;
-  color: white;
-}
-
-h3 {
-  text-align: left;
-  font-size: 10vh;
-  color: white;
-}
-
-h4 {
-  text-align: left;
-  font-size: 10vh;
-  color: white;
-
-}
-
-.cell {
-  border-radius: 15px;
-  text-decoration: none;
-  text-align: center;
-  border: none;
-  color: white;
-  font-family: "Barlow", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  font-size: 4vh;
-  transition: all .2s ease-in-out;
-  padding: 1.5vh;
+  height: 100%;
   width: 100%;
+  color: var(--primary-font-color);
+  font-family: Barlow, sans-serif;
 }
 
-.room-pin {
-  background-color: #696969;
-}
-
-#enterbox::placeholder {
-  color: #D3D3D3;
-
-  /* Set placeholder text color to white */
-}
-
-.back-arrow {
-  background: url('backarrow.png') no-repeat;
-  background-size: contain;
-  height: 9vh;
-  margin-top: -10vh;
-  width: 9vh;
-  border: none;
-  /* Remove any border */
-  padding: 0;
-  /* Remove any padding */
-  transition: transform 0.3s ease;
-  cursor: pointer;
+body {
+  background: #222339;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(135deg, #343a53, #222339, #1a1e32);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(135deg, #343a53, #222339, #1a1e32);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: cover;
 
 }
 
-.back-arrow:hover {
-  transition: all .2s ease-in-out;
-  transform: scale(1.2);
+header {
+  border-bottom: 1px solid #49576bff;
+  padding: 3.2vh;
 }
 
-#themes {
-  margin-bottom: 20px;
+.container {
+  padding-left: 4vh;
+  padding-right: 4vh;
 }
 
-#placeholder2 {
-  margin-bottom: 10px;
+.section_header {
+  font-weight: 700;
 }
 
-#enterbox {
-  margin-bottom: 20px;
-}
-
-.enter-button {
-  background: var(--accent-color);
-}
-
-.create-button {
-  font-family: "Barlow", sans-serif;
-  border: 0.8vh solid var(--accent-color);
-  background-color: transparent;
-  color: var(--accent-color);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-
-}
-
-.enter-button:hover {
-  transition: all .2s ease-in-out;
-  transform: scale(1.03);
-}
-
-
-.create-button:hover {
-  transition: all .2s ease-in-out;
-  transform: scale(1.05);
-}
-
-
-.theme-dropdown {
-  color: #D3D3D3;
-  background: #696969;
-  /* Center the element horizontally */
-}
-
-.party-name {
-  background: #696969;
-  width: min-content;
-  /* Center the element horizontally */
-}
-
-.limit-dropdown {
-  color: #D3D3D3;
-  background: #696969;
-}
-
-.create-party {
-  background: #9B00FF;
-  font-size: 3vh;
-  text-align: center;
-  height: 5.2vh;
-  border-radius: 15px;
-  width: 100%;
-  color: white;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.create-party:hover {
-  transition: all .2s ease-in-out;
-  transform: scale(1.05);
-}
-
-#namebox::placeholder {
-  color: #D3D3D3;
-}
-
-.header_text {
-  background: #12c2e9;
-  background: -webkit-linear-gradient(to right, #4776e6, #d569f8);
-  background: linear-gradient(to right, #4776e6, #d569f8);
-  padding: 2vh;
-}
-
-.rectangle {
-  background-color: rgba(45, 45, 45, 0.5);
-  width: 150px;
-  height: 30px;
-  margin: 0 auto;
-  border-radius: 10px;
-  padding-top: 5px;
-}
-
-.rectangle2 {
-  background-color: rgba(45, 45, 45, 0.5);
-  width: 300px;
-  height: 60px;
-  margin: 0 auto;
-  border-radius: 10px;
-  padding-top: 5px;
-}
-
-.settings-boxes {
-
-  margin: 0 auto;
-  margin-bottom: 2vh;
-  border-radius: 20px;
-  padding: 1.5vh 2vh 1.5vh 2vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-
+h1 {
+  font-size: 2.5rem;
 }
 
 p {
-  padding-top: .6vh;
-  text-align: left;
+  font-size: 1.2rem;
+}
+
+.settings-boxes {
+  background-color: rgba(50, 60, 74, 0.4);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 2vh 0 2vh;
+  margin-top: 2vh;
+  font-weight: 700;
+  border-radius: 20px;
+  border: 0.2px solid #49576bff;
+}
+
+.dock {
+  background-color: rgba(50, 60, 74, 0.4);
+  border-top: 0.2px solid #49576bff;
+  width: 100%;
+  position: fixed;
+  /* Change to fixed */
+  bottom: 0;
+  /* Stick to the bottom */
+}
+
+.dock ul {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
 
 }
 
-.silly-button1 {
+.dock ul li {
+  width: 100%;
+  height: 80px;
+  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-font-color);
+}
+
+.img-thumbnail {
+  height: 8rem;
   border: none;
-  padding: 0;
-  transition: transform 0.3s ease;
+  background: none;
+  border-radius: 15%;
+}
+
+.card {
+  background: none;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 0.2px solid #657b9aff;
+  border-radius: 0;
+}
+
+
+.form-control {
+  background-color: rgba(50, 60, 74, 0.4);
+  border: 0.2px solid #657b9aff;
+  font-size: 4vh;
+}
+
+
+.btn-primary {
+  background-color: rgba(50, 60, 74, 1);
+  border: 0.2px solid #657b9aff;
+
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.cell {
+  width: 100%;
+  padding: 2vh;
+  margin-top: 10px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.room-pin {
+  border-radius: 15px;
+  border: none;
+  color: grey;
+}
+
+button {
+  background-color: #657b9aff;
+  border: 0.2px solid #657b9aff;
+  color: white;
+}
+
+button:hover {
+  scale: 1.05;
+  transition: 0.3s;
+}
+
+.create-button {
+  background-color: transparent;
+  color: #657b9aff;
+}
+
+
+a button:hover {
   cursor: pointer;
 }
 
-
-.silly-button1 {
-  margin-left: auto;
-
-}
-
-.silly-button1:hover {
-  transition: all .2s ease-in-out;
-  transform: scale(1.2);
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
 }

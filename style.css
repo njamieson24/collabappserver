@@ -154,6 +154,22 @@ button {
   color: white;
 }
 
+button:hover {
+  scale: 1.05;
+  transition: 0.3s;
+}
+
+.create-button {
+  background-color: transparent;
+  color: #657b9aff;
+}
+
+
 a button:hover {
   cursor: pointer;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
 }

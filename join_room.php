@@ -54,29 +54,28 @@ if (isset($_POST['room_code'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DJ App</title>
-  <link href="main.css" rel="stylesheet" type="text/css" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
-  <div class="login text-center">
+
+<div class="login text-center vertical-center" style="margin: auto; width: 70%;">
     <div class="row row-cols-1">
       <div class="col">
-        <h1 class="barlow-semibold" style="color: white;">LOGO</h1>
+        <h1 class="barlow-semibold" style="color: white; text-align:center;">collab<span style="color: #4590e6;">.</span></h1>
       </div>
       <div class="col">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-          <input class="room-pin cell" type="text" id="enterbox" name="room_code" inputmode="numeric" placeholder="ROOM PIN"
+          <input class="room-pin cell" style="box-sizing: border-box;" type="text" id="enterbox" name="room_code" inputmode="numeric" placeholder="ROOM PIN"
             maxlength="6" />
           <button class="enter-button cell" type="submit">ENTER</button>
           <?php if(isset($errorMessage)) echo "<p style='color: red;'>$errorMessage</p>"; ?>
         </form>
       </div>
       <div class="col">
-        <h2 class="barlow-semibold" style="color: white;"> - OR - </h2>
+        <h2 class="barlow-semibold" style="color: white; text-align: center; padding: 10px;"> - OR - </h2>
       </div>
       <div class="col">
         <a style="text-decoration:none;" href="create_room.php"><button class="create-button cell" type="button">CREATE
@@ -88,6 +87,8 @@ if (isset($_POST['room_code'])) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+
+  <script src="page-content.js"></script>
 
 </body>
 

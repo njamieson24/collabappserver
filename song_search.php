@@ -1,7 +1,76 @@
 <?php
+// Include database connection parameters
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'djapp');
 
+// Establish a database connection
+$connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
+// Check if the connection was successful
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Ensure room code is available from GET parameters
+if (isset($_GET['room_code'])) {
+  $roomCode = $_GET['room_code'];
+} else {
+  die("Room code not provided in the URL.");
+}
+
+// Query to fetch the room details from `rooms`
+$room_query = "SELECT room_id FROM rooms WHERE room_code = '$roomCode'";
+$room_result = mysqli_query($connection, $room_query);
+
+if ($room_result && mysqli_num_rows($room_result) > 0) {
+    $room_data = mysqli_fetch_assoc($room_result);
+    $room_id = $room_data['room_id']; // Get room_id for referencing
+} else {
+    die("Room not found.");
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (isset($_POST['room_code'])) {
+    $roomCode = $_POST['room_code'];
+    // Get room ID
+    $room_query = "SELECT room_id FROM rooms WHERE room_code = '$roomCode'";
+    $room_result = mysqli_query($connection, $room_query);
+
+    if ($room_result && mysqli_num_rows($room_result) > 0) {
+      $room_data = mysqli_fetch_assoc($room_result);
+      $room_id = $room_data['room_id'];
+    } else {
+      die("Room not found.");
+    }
+  } else {
+    die("Room code not provided.");
+  }
+
+  if (isset($_POST['song_name'], $_POST['artist_name'], $_POST['album_image'])) {
+    $song_name = $_POST['song_name'];
+    $artist_name = $_POST['artist_name'];
+    $album_image = $_POST['album_image'];
+
+    $query = "INSERT INTO song_queue (song_name, artist_name, album_image) 
+              VALUES ('$song_name', '$artist_name', '$album_image')";
+
+    if (mysqli_query($connection, $query)) {
+      echo "Song added successfully";
+    } else {
+      echo "Error adding song: " . mysqli_error($connection);
+    }
+  } else {
+    echo "Invalid data.";
+  }
+}
+
+// Close the database connection
+mysqli_close($connection);
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +98,10 @@
   </div>
 
   <script src="script.js"></script>
-
+  <script>
+    // Assign the value of $room_code directly to roomCode
+    const roomCode = <?php echo json_encode($roomCode); ?>;
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </body>
 
