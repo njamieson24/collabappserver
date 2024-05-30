@@ -52,13 +52,13 @@
       align-items: center;
       margin-bottom: 10px;
       padding: 10px;
-      background-color: none;
+      background-color: red;
       border: none;
     }
 
     .card img {
-      width: 85px;
-      height: 85px;
+      width: 60px;
+      height: 60px;
       margin-right: 15px;
       border-radius: 15px;
     }
@@ -75,8 +75,8 @@
     }
 
     .card-text {
-      font-size: 1rem;
-      color: #6c757d;
+      font-size: 1.2rem;
+      color: #9c9c9c;
       margin: 0;
     }
     
@@ -181,6 +181,11 @@
     </div>
   <?php endif; ?>
 </div>
+
+<div style="margin-top: 4vh; display: flex; justify-content: space-between;" class="container">
+  <p style="margin: 0; padding: 8px 0 8px 0;" class="section_header">Next Up</p>
+  </div>
+
 
 <div style="opacity: 0.5;" class="row row-cols-1 mx-2" id="playlistContainer">
   <!-- Tracks will be dynamically added here -->
